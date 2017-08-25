@@ -1,0 +1,124 @@
+"All spreadsheet editors suck, this one just sucks less." *
+
+This README file is under construction:
+ Sorry, that's what you get for grabbing a beta package.
+ If you are reading this. Feel free to contact jmcclure@cns.umass.edu
+ for further information and/or updates.
+
+MANGE:
+ Mange is intended to be to datafiles what mutt is to email.
+ Mange is a ncurses-based console flatfile (eg CSV, TSV) editor.
+ Future versions of mange should include many useful functions,
+ but this is not intended to be a data-analysis package (see R
+ for that).  This project was born out of a frustration with
+ attempting to edit CSV files in my otherwise-loved editor, nano.  
+ Mange is a lightweight editor following the K.I.S.S. principle,
+ the advantage over a good editor such as nano is that mange keeps
+ track of rows and columns, allows for operations on cells, rows,
+ or columns, and displays each of these in an easy to read manner.
+ Mange does include basic plotting functionality that should be
+ sufcicient for a quick overview of descriptive data.
+
+	-Jesse McClure
+	July 2011
+
+
+*NOTE:
+ I have no connection or affiliation with the developers of mutt,
+ though I hope it will be recognized that imitation is the highest
+ form of flattery, and I can only hope my attempt to bring the 
+ "mutt spirit" to a flatfile editor will be successful.
+
+INSTALL
+	please see INSTALL file or just try "./configure && make install"
+
+CODING
+	please see CODING file for information on my "coding conventions" and other
+	bits and bobs if you plan on perusing or editing the source code.
+
+USAGE:  <this will be better organized and documented in upcoming versions>
+
+$ mange <filename | -h | -sX | -p>
+
+-h		display help and exit (not yet...)
+-sX		sets the field delimiter to 'X' (eg -s\t for tsv files)
+-p		for command line access to plotting functions - this must be the last command line
+		option as everything that follows this is treated as input to the plot command (see below)
+		(Plotting from the command line is not *quite* functional.  It functions, but the graph is not saved yet)
+
+If no filename is provided mange will open an empty 10x10 buffer.
+
+General functions:
+	
+	ARROWS (UP|DOWN|LEFT|RIGHT)
+		move cursor from cell to cell
+	
+	ENTER
+		enter edit mode.
+	
+	:
+		enter command mode
+		
+	DEL | BACKSPACE | d | D | CTL-K
+		enter delete mode
+	
+	INS | i | I
+		enter insert mode
+	
+	CTL-X
+		exit
+	CTL-U
+		undo
+
+Edit mode:
+-use arrows to move, keys to type.
+	ENTER
+		on a changed cell: save cell changes and move to the next lower cell for editing.
+		on an unchanged cell:  exit edit mode
+	TAB
+		save cell changes and move to the next cell to the right for editing
+
+Command mode functions:
+	quit
+		exits
+	save [filename]
+		saves the current buffer to 'filename'
+		if no name is provided the current filename will be used
+	open [filename]
+		opens a file or an empty buffer if no name is provided
+	undo
+		undoes last action [20 undo levels at present]
+	plot <formula> [<parameter> [<parameter> [...]]]
+		Creates and displays a plot of data.  Uses R formula notation and accepts optional graphics
+		parameters.  See R documentation for a full list of options.  If any option includes spaces
+		enclose the entire option in sinlge quotes ('). Separate parameters with spaces, not commas.
+		EXAMPLE: plot y~x+a xlab="X_var" yab="Y_var"
+			if x and why are numeric this creates a scatter plot with points color coded by variable 'a'
+			if y is numeric and x is not this creates a barplot grouped by variable 'a'
+	saveplot [filename]
+		Save the last viewed plot in jpeg format. 
+	(commands)
+		future versions will include the ability to parse the current buffer (file) through
+		other tools such as grep, awk, or sed.  This should also work with any shell, perl,
+		python, or other script that can read from a stdin pipe and output to stdout.
+
+Delete / Insert mode functions:
+-You will be prompted for C, R, or E
+	C | c
+		Delete the current column, or insert a new column to the right of the current one
+	R | r
+		Delete the current row, or insert a new row below the current one
+	E | e
+		Delete the current entry (aka cell), or insert a new entry
+-If you delete or insert a single entry you may be prompted for a direction [ DISABLED in v0.1b ]
+	UP
+		shifts column up to fill deleted cell
+	DOWN
+		shifts column down to make room for inserted cell (note, the cell at the bottom will be lost)
+	LEFT	
+		shifts row left to fill deleted cell
+	RIGHT
+		shifts row right to make room for inserted cell (note, the cell at the far right will be lost)
+	E | e
+		Leave a deleted cell Empty
+

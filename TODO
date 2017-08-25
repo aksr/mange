@@ -1,0 +1,35 @@
+**ROADMAP**
+ Following is a list of goals for each release.  If you have received
+a copy of this package for testing I'd be interested in receiving bug
+notifications and feature requests at jmcclure@cns.umass.edu
+
+ Much of this may be in my own 'note to self' format.  If it makes sense
+to you, great; if not ... delete it.
+
+*v0.1* <spring 2012>
+	- Bug fixes from beta
+
+*v0.2* <anticipated: summer 2012>
+	- Reimplement/Repair disabled functions:
+		I don't know why these were failing in the pre-beta release, but as they are rarely enough
+		used I disabled them for the time being.
+		- shifts with deleteCell->entry
+		- insertCell->entry
+		- make sure shifts do not read from outside of buffer
+	- Add filters grep and sed to command mode
+	- Add arbitrary filers to command mode (for command line tools/scripts such as perl, python, bash, etc)
+	- Add 'help' systems and manual
+	- Add optional "syntax" highlighting: urls, emails, numbers, strings, etc.
+
+...
+
+*v0.x*
+	- Bug fixes from earlier v0.x's
+
+*v1.0b*
+	- Read settings at runtime from an rc file for:
+		- key bindings
+		- standard colors & syntax highlighting options
+		- default image viewer
+		- ... ?
+

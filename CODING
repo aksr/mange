@@ -1,0 +1,62 @@
+Notes on the coding style used in mange.
+
+I do have my own coding style that differs from what I commonly see.
+My style is farily similar to the K&R style (but note opening function
+brace placement) with a strong focus on being compact, but readable ...
+at least to me.
+
+You may also note a stark *lack* of commenting.  There are two reasons for this,
+one is philosophical, the other is just laziness ... I should comment my
+code better.  On the philosophical end though the better the code is written
+the less commenting is needed AND most code commenting I encounter is
+entirely unhelpful and - in fact - quite disturbing.
+
+Some code commenting takes up a lot of space breaking up the logical flow
+of the code while providing no information.
+
+I've seen many cases with something much like the following:
+
+> /*********************
+> /  In the following
+> /  line we will start
+> /  a for loop that
+> /  will loop through
+> /  the variable i
+> /  for values from zero
+> /  to the value of X
+> /***********************/
+>
+>
+> // Heres that for loop
+> for (i=0; i<X; i++) {
+
+That comment provides no information that was not in the one line of code!
+
+Yet in the same files I will see variables used that have obscure and unruly
+names that are declared *far* from their first use with no comment to say
+what the variable is for.
+
+I comment things that need work, or areas of code that may be hard to follow.
+I aim to use variable names and function names that are informative.  An
+exception may be some very short variable names - in almost every case a
+very short variable name will be some sort of temporary variable, placeholder
+or loop counter - each of these should be clear from the context.
+
+I believe I have stuck to a pattern of using x and y as screen coordinates
+and i and j as column and row numbers in the spreadsheet.  In a few functions
+ti and tj are declared - these are temporary i and j variables.
+
+Yes - I should comment more.  But I believe there is a happy medium between
+my spartan comments and the comment-cancer that plagues much source code I
+encounter.
+
+But now it's time to get off my soapbox.
+
+I hope you enjoy Mange, and I hope - if you peruse the code - that you don't
+find it too frustrating.  Realize that this was initially made for personal
+use out of personal need - if others start using it more, I will be happy
+to make it more other-user friendly.
+
+-Jesse
+Aug 2011
+
